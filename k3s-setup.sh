@@ -36,7 +36,7 @@ fi
 ## 6. Install/Upgrade k9s
 echo "Installing/Upgrading k9s..."
 if [[ "$(uname -m)" == "x86_64" ]]; then
-    arch -x86_64 brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
+    arch -x86_64 brew install gcc || arch -x86_64 brew upgrade gcc && arch -x86_64 brew install derailed/k9s/k9s || arch -x86_64 brew upgrade derailed/k9s/k9s
 else 
     brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
 fi
