@@ -48,6 +48,8 @@ fi
 
 if [ -n "$CONFIG_FILE" ]; then
   cat >> "$CONFIG_FILE" << EOL
+
+############################ -= K3s SETUP =- ############################
 export KUBECONFIG=~/.kube/k3s.yaml
 alias k=kubectl
 complete -F __start_kubectl k
