@@ -25,8 +25,6 @@ current_path="$PATH"
 
 # Convert the PATH into an array
 IFS=':' read -ra path_array <<< "$current_path"
-echo 'IFS'
-echo $IFS
 # Filter out paths that start with /home/linuxbrew/.linuxbrew
 filtered_path_array=()
 for path in "${path_array[@]}"; do
@@ -40,7 +38,10 @@ new_path=$(IFS=':'; echo "${filtered_path_array[*]}")
 
 # Update the PATH in the config file
 sed -i "s|export PATH=.*|export PATH=\"$new_path\"|" "$CONFIG_FILE"
+# Update $PATH
+export PATH="$new_path"
 
+## 4. Clean up
 # Delete k3s-setup folder
 rm -rf $HOME/k3s/k3s-setup
 
