@@ -26,9 +26,7 @@ The setup was tested for following environments:
 ### Really.. I want to start it now
 
 ```bash
-git clone https://github.com/arnWolff/k3s-setup.git
-cd k3s-setup
-./k3s-setup.sh
+mkdir -p $HOME/k3s && cd $HOME/k3s && git clone https://github.com/arnWolff/k3s-setup.git && cd k3s-setup && ./k3s-setup.sh
 ```
 
 Install the self-signed root certificate that was generated in `./cluster-system/cert-manager/certs/tls.crt` into your local browser or computer truststore for root certificates.
