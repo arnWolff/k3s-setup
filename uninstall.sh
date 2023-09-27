@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Deleteting K3s..."
 ## 1. Remove Nginx local reverse proxy - Windows+WSL only
 if grep -qi microsoft /proc/version; then
   echo "WSL detected - Removing nginx reverse proxy"
