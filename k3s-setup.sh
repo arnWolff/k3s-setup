@@ -62,7 +62,7 @@ k3s() {
       sudo service k3s start
       ;;
     uninstall)
-      k3s-uninstall.sh && sudo apt remove nginx
+      rm -rf $HOME/k3s/k3s-setup && k3s-uninstall.sh && sudo apt remove nginx
       ;;
     install)
       mkdir -p \$HOME/k3s && cd \$HOME/k3s
