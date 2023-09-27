@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bootstrap a K3s based Kubernetes setup with helm, metrics, ingress, cert-manager and K8s dashboard
+# Bootstrap a K3s based Kubernetes setup with brew, helm, metrics, ingress, cert-manager, k9s and K8s dashboard
 
 ## 1. Install/Upgrade Homebrew
 if ! command -v brew &> /dev/null; then
@@ -54,6 +54,11 @@ alias k=kubectl
 complete -F __start_kubectl k
 source <(kubectl completion bash)
 
+# Add Homebrew and k9s to PATH
+export PATH="/home/linuxbrew/.linuxbrew/bin:\$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/sbin:\$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:\$PATH"
+
 k3s() {
   case "\$1" in
     stop)
@@ -63,7 +68,7 @@ k3s() {
       sudo service k3s start
       ;;
     uninstall)
-      rm -rf $HOME/k3s/k3s-setup && sudo k3s-uninstall.sh && sudo apt remove nginx
+      $HOME/k3s/k3s-setup/uninstall.sh
       ;;
     install)
       mkdir -p \$HOME/k3s && cd \$HOME/k3s
@@ -83,12 +88,6 @@ EOL
 
 source "$CONFIG_FILE"
 fi
-
-## 8. Add Homebrew and k9s to PATH
-
-echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> "$CONFIG_FILE"
-echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> "$CONFIG_FILE"
-echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:$PATH"' >> "$CONFIG_FILE"
 
 source "$CONFIG_FILE"
 
