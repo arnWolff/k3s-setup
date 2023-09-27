@@ -21,12 +21,12 @@ The setup was tested for following environments:
 - Make sure your Linux or WSL2 environment has access to the Internet (directly or via properly configured HTTP/HTTPS proxy)
 - Your WSL2 distro must have [systemd support](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings) enabled
 - Make sure you have `sudo` permissions
-- You need to have `curl` and [helm installed](https://helm.sh/docs/intro/install/) in your Linux environment
+- You need to have `curl` in your Linux environment
 
 ### Really.. I want to start it now
 
 ```bash
-git clone https://github.com/groundhog2k/k3s-setup.git
+git clone https://github.com/arnWolff/k3s-setup.git
 cd k3s-setup
 ./k3s-setup.sh
 ```
