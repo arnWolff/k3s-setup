@@ -52,28 +52,23 @@ export KUBECONFIG=~/.kube/k3s.yaml
 You can stop the installed k3s with:
 
 ```bash
-k3s-killall.sh
+k3s stop
 ```
 
 ...and start it again with:
 
 ```bash
-sudo service k3s start
+k3s start
 ```
 
 ## How to uninstall?
 
-Uninstall everything related to k3s with a simple:
+Uninstall everything related to k3s-setup with a simple:
 
 ```bash
-k3s-uninstall.sh
+k3s uninstall
 ```
 
-If you want to uninstall nginx too (WSL2 only):
-
-```bash
-sudo apt remove nginx
-```
 
 ---
 
