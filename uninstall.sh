@@ -18,3 +18,26 @@ fi
 # Delete lines between and including the markers
 sed -i '/^############################ -= K3s SETUP =- ############################$/,/^############################ -= K3s END =- ############################$/d' "$CONFIG_FILE"
 
+## 3. Revome entries from ENV:PATH
+# Get the current PATH
+current_path="$PATH"
+
+# Convert the PATH into an array
+IFS=':' read -ra path_array <<< "$current_path"
+
+# Filter out paths that start with /home/linuxbrew/.linuxbrew
+filtered_path_array=()
+for path in "${path_array[@]}"; do
+  if [[ ! $path =~ ^/home/linuxbrew/.linuxbrew.* ]]; then
+    filtered_path_array+=("$path")
+  fi
+done
+
+# Convert the filtered array back into a PATH string
+new_path=$(IFS=':'; echo "${filtered_path_array[*]}")
+
+# Update the PATH in the config file
+sed -i "s|export PATH=.*|export PATH=\"$new_path\"|" "$CONFIG_FILE"
+
+# reload 
+source "$CONFIG_FILE"
