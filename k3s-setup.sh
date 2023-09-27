@@ -4,6 +4,7 @@
 ## 1. Install/Upgrade Homebrew
 if ! command -v brew &> /dev/null; then
   echo "Homebrew not found - Installing Homebrew..."
+  sudo apt-get install build-essential
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 else
   echo "Homebrew found - Upgrading Homebrew..."
@@ -35,11 +36,7 @@ fi
 
 ## 6. Install/Upgrade k9s
 echo "Installing/Upgrading k9s..."
-if [[ "$(uname -m)" == "x86_64" ]]; then
-    arch -x86_64 brew install gcc || arch -x86_64 brew upgrade gcc && arch -x86_64 brew install derailed/k9s/k9s || arch -x86_64 brew upgrade derailed/k9s/k9s
-else 
-    brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
-fi
+brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
 
 ## 7. Append lines to ~/.bashrc or ~/.zshrc
 if [ -f "$HOME/.bashrc" ]; then
