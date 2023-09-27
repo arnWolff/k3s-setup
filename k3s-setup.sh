@@ -74,11 +74,17 @@ k3s() {
       ;;
   esac
 }
-EOL
+
+## 8. Add Homebrew and k9s to PATH
+if [ -n "$CONFIG_FILE" ]; then
+  echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> "$CONFIG_FILE"
+  echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> "$CONFIG_FILE"
+  echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> "$CONFIG_FILE"
+  echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:$PATH"' >> "$CONFIG_FILE"
   source "$CONFIG_FILE"
 fi
 
-## 8. Run command to reload configuration file
+## 9. Run command to reload configuration file
 if [ -n "$CONFIG_FILE" ]; then
   source "$CONFIG_FILE"
 fi
