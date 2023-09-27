@@ -48,6 +48,7 @@ fi
 
 if [ -n "$CONFIG_FILE" ]; then
   cat >> "$CONFIG_FILE" << EOL
+
 ############################ -= K3s SETUP =- ############################
 export KUBECONFIG=~/.kube/k3s.yaml
 alias k=kubectl
@@ -77,6 +78,10 @@ k3s() {
       ;;
   esac
 }
+############################ -= K3s END =- ############################
+EOL
+  source "$CONFIG_FILE"
+fi
 
 ## 8. Add Homebrew and k9s to PATH
 if [ -n "$CONFIG_FILE" ]; then
