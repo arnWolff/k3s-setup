@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bootstrap a K3s based Kubernetes setup with helm, metrics, ingress, cert-manager and K8s dashboard
+# Bootstrap a K3s based Kubernetes setup with brew, helm, metrics, ingress, cert-manager and K8s dashboard
 
 ## 1. Install/Upgrade Homebrew
 if ! command -v brew &> /dev/null; then
