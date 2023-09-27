@@ -37,7 +37,7 @@ fi
 
 ## 6. Install/Upgrade k9s
 echo "Installing/Upgrading k9s..."
-brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
+brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
 
 ## 7. Append lines to ~/.bashrc or ~/.zshrc
 if [ -f "$HOME/.bashrc" ]; then
