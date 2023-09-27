@@ -86,10 +86,7 @@ k3s() {
 
 EOL
 
-source "$CONFIG_FILE"
 fi
-
-source "$CONFIG_FILE"
 
 ## 9. Run command to reload configuration file
 
