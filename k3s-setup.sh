@@ -65,7 +65,7 @@ k3s() {
     install)
       mkdir -p \$HOME/k3s && cd \$HOME/k3s
       if [ ! -d "./k3s-setup" ]; then
-        git clone https://github.com/groundhog2k/k3s-setup.git
+        git clone https://github.com/arnWolff/k3s-setup.git
       fi
       cd ./k3s-setup && ./k3s-setup.sh
       ;;
