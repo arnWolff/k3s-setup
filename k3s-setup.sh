@@ -4,9 +4,9 @@
 ## 1. Install/Upgrade Homebrew
 if ! command -v brew &> /dev/null; then
   echo "Homebrew not found - Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 else
   echo "Homebrew found - Upgrading Homebrew..."
   brew update && brew upgrade
