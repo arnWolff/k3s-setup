@@ -1,11 +1,9 @@
 #!/bin/bash
-# Bootstrap a K3s based Kubernetes setup with brew, helm, metrics, ingress, cert-manager and K8s dashboard
+# Bootstrap a K3s based Kubernetes setup with helm, metrics, ingress, cert-manager and K8s dashboard
 
 ## 1. Install/Upgrade Homebrew
 if ! command -v brew &> /dev/null; then
   echo "Homebrew not found - Installing Homebrew..."
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 else
   echo "Homebrew found - Upgrading Homebrew..."
@@ -37,7 +35,11 @@ fi
 
 ## 6. Install/Upgrade k9s
 echo "Installing/Upgrading k9s..."
-brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
+if [[ "$(uname -m)" == "x86_64" ]]; then
+    arch -x86_64 brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
+else 
+    brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
+fi
 
 ## 7. Append lines to ~/.bashrc or ~/.zshrc
 if [ -f "$HOME/.bashrc" ]; then
@@ -79,21 +81,22 @@ k3s() {
   esac
 }
 ############################ -= K3s END =- ############################
+
 EOL
-  source "$CONFIG_FILE"
+
+source "$CONFIG_FILE"
 fi
 
 ## 8. Add Homebrew and k9s to PATH
-if [ -n "$CONFIG_FILE" ]; then
-  echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> "$CONFIG_FILE"
-  echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> "$CONFIG_FILE"
-  echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:$PATH"' >> "$CONFIG_FILE"
-  source "$CONFIG_FILE"
-fi
+
+echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> "$CONFIG_FILE"
+echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> "$CONFIG_FILE"
+echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:$PATH"' >> "$CONFIG_FILE"
+
+source "$CONFIG_FILE"
 
 ## 9. Run command to reload configuration file
-if [ -n "$CONFIG_FILE" ]; then
-  source "$CONFIG_FILE"
-fi
+
+source "$CONFIG_FILE"
 
 echo "*** Finished! Enjoy your local K8s environment. ***"
