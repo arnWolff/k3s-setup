@@ -5,6 +5,8 @@
 if ! command -v brew &> /dev/null; then
   echo "Homebrew not found - Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 else
   echo "Homebrew found - Upgrading Homebrew..."
   brew update && brew upgrade
@@ -77,7 +79,6 @@ k3s() {
 
 ## 8. Add Homebrew and k9s to PATH
 if [ -n "$CONFIG_FILE" ]; then
-  echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> "$CONFIG_FILE"
   echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> "$CONFIG_FILE"
   echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> "$CONFIG_FILE"
   echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:$PATH"' >> "$CONFIG_FILE"
