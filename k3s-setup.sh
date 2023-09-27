@@ -76,6 +76,7 @@ k3s() {
         git clone https://github.com/arnWolff/k3s-setup.git
       fi
       cd ./k3s-setup && ./k3s-setup.sh
+      chmod 700 uninstall.sh
       ;;
     *)
       echo "Usage: k3s {stop|start|uninstall|install}"
