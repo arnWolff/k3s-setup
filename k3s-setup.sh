@@ -59,7 +59,7 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:\$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/sbin:\$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/opt/k9s/bin:\$PATH"
 
-k3s() {
+k3s-setup() {
   case "\$1" in
     stop)
       k3s-killall.sh
@@ -79,7 +79,7 @@ k3s() {
       chmod 700 uninstall.sh
       ;;
     *)
-      echo "Usage: k3s {stop|start|uninstall|install}"
+      echo "Usage: k3s-setup {stop|start|uninstall|install}"
       ;;
   esac
 }
