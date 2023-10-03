@@ -16,5 +16,5 @@ cd ../ingress-nginx
 ./install.sh
 
 ## 5. Install kubernetes dashboard
-cd ../k8s-dashboard
-./install.sh
+#cd ../k8s-dashboard
+#./install.sh
