@@ -1,15 +1,6 @@
 #!/bin/bash
-# Bootstrap a K3s based Kubernetes setup with brew, helm, metrics, ingress, cert-manager, k9s and K8s dashboard
+# Bootstrap a K3s based Kubernetes setup with helm, metrics, nginx ingress, cert-manager
 
-## 1. Install/Upgrade Homebrew
-if ! command -v brew &> /dev/null; then
-  echo "Homebrew not found - Installing Homebrew..."
-  sudo apt-get install build-essential
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
-else
-  echo "Homebrew found - Upgrading Homebrew..."
-  brew update && brew upgrade
-fi
 
 ## 2. Install/Upgrade Helm Charts
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -24,19 +15,7 @@ cd k3s
 cd ../cluster-system
 ./cluster-setup.sh
 
-## 5. Prepare Nginx as local reverse proxy between localhost and WSL - Windows+WSL only
-if grep -qi microsoft /proc/version; then
-  echo "WSL detected - Installing nginx as reverse proxy"
-  cd ../nginx
-  ./prepare-nginx.sh
-  cd ..
-else
-  echo "Native Linux - No need to install nginx"
-fi
 
-## 6. Install/Upgrade k9s
-echo "Installing/Upgrading k9s..."
-brew install gcc || brew upgrade gcc && brew install derailed/k9s/k9s || brew upgrade derailed/k9s/k9s
 
 ## 7. Append lines to ~/.bashrc or ~/.zshrc
 if [ -f "$HOME/.bashrc" ]; then
@@ -93,4 +72,4 @@ fi
 
 source "$CONFIG_FILE"
 
-echo "*** Finished! Enjoy your local K8s environment. ***"
+echo "*** Finished! Enjoy your K3s environment. ***"
