@@ -4,8 +4,8 @@ export KUBECONFIG=~/.kube/k3s.yaml
 kubectl apply -f namespace.yaml
 
 ## 2. Install metrics-server
-cd metrics-server
-./install.sh
+#cd metrics-server
+#./install.sh
 
 ## 3. Install jetstack cert-manager, local rootca and cert issuer
 cd ../cert-manager
